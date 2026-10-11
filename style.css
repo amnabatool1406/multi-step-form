@@ -1,0 +1,275 @@
+:root {
+    --primary-color: #6d28d9;
+    --primary-hover: #5b21b6;
+    --bg-color: #e0d4e4;      /* Soft lilac background */
+    --card-bg: #ffffff;
+    --text-color: #1f2937;
+    --gray-light: #e5e7eb;
+    --error-color: #ef4444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 480px;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 45px 55px rgba(74, 44, 90, 0.1);
+    overflow: hidden;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 0%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.progress-bar-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: var(--gray-light);
+    z-index: 0;
+}
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.step-indicator {
+    width: 32px;
+    height: 32px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--gray-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.step-indicator.completed {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Form Steps & Animations */
+.form-step {
+    display: none;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.form-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.step-desc {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+input, select, textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+}
+
+input.error, select.error {
+    border-color: var(--error-color);
+}
+
+.error-msg {
+    color: var(--error-color);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    height: 1rem;
+}
+
+/* Minimal Password Toggle Styles */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    padding-right: 60px; /* Space for minimal toggle text */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+    background-color: rgba(109, 40, 217, 0.05);
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-next, .btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: auto;
+}
+
+.btn-next:hover, .btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-prev {
+    background-color: var(--gray-light);
+    color: var(--text-color);
+}
+
+.btn-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* Summary Card */
+.summary-box {
+    background-color: #f9fafb;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.summary-label {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Success View */
+.success-message {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.success-message h2 {
+    color: #10b981;
+    margin-bottom: 0.75rem;
+}
+
+.success-message p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+.btn-reset {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+}

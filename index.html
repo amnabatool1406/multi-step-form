@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- Progress Bar Indicator -->
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="step-indicators">
+                <div class="step-indicator active" data-step="1">1</div>
+                <div class="step-indicator" data-step="2">2</div>
+                <div class="step-indicator" data-step="3">3</div>
+                <div class="step-indicator" data-step="4">4</div>
+            </div>
+        </div>
+
+        <form id="multiStepForm">
+            <!-- Step 1: Personal Info -->
+            <div class="form-step active" data-step="1">
+                <h2>Personal Information</h2>
+                <p class="step-desc">Please enter your basic details.</p>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="John " required>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-next" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Account Details -->
+            <div class="form-step" data-step="2">
+                <h2>Account Credentials</h2>
+                <p class="step-desc">Set up your login details.</p>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="john123" required>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password" id="togglePasswordBtn" onclick="togglePasswordVisibility()">Show</button>
+                    </div>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-prev" onclick="prevStep()">Back</button>
+                    <button type="button" class="btn btn-next" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Preferences -->
+            <div class="form-step" data-step="3">
+                <h2>Preferences</h2>
+                <p class="step-desc">Tell us a bit about your interests.</p>
+
+                <div class="form-group">
+                    <label for="role">Primary Role</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select your role</option>
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                    </select>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Short Bio</label>
+                    <textarea id="bio" name="bio" rows="3" placeholder="Tell us something about yourself..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-prev" onclick="prevStep()">Back</button>
+                    <button type="button" class="btn btn-next" onclick="nextStep()">Review</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Summary & Submission -->
+            <div class="form-step" data-step="4">
+                <h2>Review Your Details</h2>
+                <p class="step-desc">Make sure everything looks correct before submitting.</p>
+
+                <div class="summary-box" id="summaryContent">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-prev" onclick="prevStep()">Back</button>
+                    <button type="submit" class="btn btn-submit">Submit Form</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Success Message Screen -->
+        <div class="success-message" id="successMessage" style="display: none;">
+            <h2> Success!</h2>
+            <p>Your form has been submitted successfully.</p>
+            <button type="button" class="btn btn-reset" onclick="resetForm()">Reset Form</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
